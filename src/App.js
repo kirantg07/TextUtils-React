@@ -1,24 +1,48 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+
 import './App.css';
+import About from './components/About';
+import Navbar from './components/Navbar';
+import Textarea from './components/Textarea';
+import Alert from './components/Alert';
+
+
 
 function App() {
+  const [mode,setmode]=useState('light');
+  const [alert,setAlert]=useState(null);
+  const sowAlert=(message,type)=>{
+    setAlert(
+      {
+        msg:message,
+        type:type
+      }
+    )
+    setTimeout(()=>{
+      setAlert(null);
+    },2000)
+  }
+  const togglemode=()=>{
+    if(mode==='light'){
+      setmode('dark');
+      document.body.style.backgroundColor='black';
+      sowAlert('Dark mode is enabled','success');
+    }else{
+      setmode('light');
+      document.body.style.backgroundColor='white';
+      sowAlert('light mode is enabled','success');
+
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+  <Navbar title="TextUtils" mode={mode} togglemode={togglemode}/>
+  <Alert alert={alert}/>
+  <div className='container'>
+  <Textarea heading="Enter the text to analyze below" sowAlert={sowAlert} mode={mode} togglemode={togglemode}/>
+  <About mode={mode} togglemode={togglemode}/>
+  </div>
+  </>
   );
 }
 
