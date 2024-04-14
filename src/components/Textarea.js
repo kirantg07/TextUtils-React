@@ -43,16 +43,16 @@ const handleEmail=()=>{
     <h2 style={{color: props.mode==='light'?'black':'white'}}>{props.heading}</h2>
         <textarea className="form-control" value={text} id="myBox" style={{backgroundColor:props.mode==='light'?'white':'black',color:props.mode==='light'?'black':'white'}} onChange={handlechange} rows="8"></textarea>
     </div>
-    <button className='btn btn-primary' onClick={handleupcase}>Upper case</button>
-    <button className='btn btn-primary mx-3' onClick={handlelocase}>Lower case</button>
-    <button className='btn btn-primary mx-3' onClick={handlePhoneNumber}>Extract PhoneNumber</button>
+    <button className='btn btn-primary mx-3' onClick={handleupcase}>Upper case</button>
+    <button className='btn btn-primary mx-3 my-1' onClick={handlelocase}>Lower case</button>
+    <button className='btn btn-primary mx-3 my-1' onClick={handlePhoneNumber}>Extract PhoneNumber</button>
 
-    <button className='btn btn-primary mx-3' onClick={handleclear}>Claer</button>
-    <button className='btn btn-primary mx-3' onClick={handleEmail}>Extract Email</button>
+    <button className='btn btn-primary mx-3 my-1' onClick={handleclear}>Claer</button>
+    <button className='btn btn-primary mx-3 my-1' onClick={handleEmail}>Extract Email</button>
 
-    <button className='btn btn-primary mx-3'onClick={handleextraspace}>Remove extra space</button>
-    <div className='my-3' style={{color: props.mode==='light'?'black':'white'}}>
-        <span className=''>{text.length} characters</span>
+    <button className='btn btn-primary mx-3 my-1'onClick={handleextraspace}>Remove extra space</button>
+    <div className='my-3' style={{color: props.mode==='light'?'black':'white',display:'flex',flexDirection:'column'}}>
+        <span className='mx-3'>{text.length} characters</span>
         <span className='mx-3'> {text.length===0?0:text.split(' ').length} words</span>
         <span className='mx-3'>{text.length===0?0:0.008*text.split(' ').length} minutes time</span>
         <span className='mx-3'>Extracted email :{emails.map((email, index) => <span key={index}>{email} </span>)}</span>
